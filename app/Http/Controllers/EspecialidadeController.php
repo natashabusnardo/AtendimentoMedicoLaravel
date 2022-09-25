@@ -24,7 +24,7 @@ class EspecialidadeController extends Controller
      */
     public function create()
     {
-        //
+        return view('especialidade.create');
     }
 
     /**
@@ -35,7 +35,14 @@ class EspecialidadeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $especialidade = new Especialidade;
+
+        $especialidade->id = $request->id;
+        $especialidade->nome = $request->nome;
+        
+        $especialidade->save();
+
+        return redirect()->route('especialidade.index');
     }
 
     /**
@@ -46,7 +53,9 @@ class EspecialidadeController extends Controller
      */
     public function show(Especialidade $especialidade)
     {
-        //
+        $especialidade = Especialidade::findOrFail($especialidade->id);
+
+        return view("especialidade.show", ['especialidade' => $especialidade]);
     }
 
     /**
@@ -57,7 +66,9 @@ class EspecialidadeController extends Controller
      */
     public function edit(Especialidade $especialidade)
     {
-        //
+        $especialidade = Especialidade::findOrFail($id);
+
+        return view("especialidade.edit", ['especialidade' => $especialidade]);
     }
 
     /**
@@ -69,7 +80,10 @@ class EspecialidadeController extends Controller
      */
     public function update(Request $request, Especialidade $especialidade)
     {
-        //
+        $especialidade = Especialidade::findOrFail($id);
+        $especialidade->nome = $request->nome;
+        $especialidade->save();
+        return redirect()->route('especialidade.index');
     }
 
     /**
@@ -80,6 +94,7 @@ class EspecialidadeController extends Controller
      */
     public function destroy(Especialidade $especialidade)
     {
-        //
+        Especialidade::findOrFail($especialidade->id)->delete();
+        return redirect()->route('especialidade.index');
     }
 }
