@@ -14,7 +14,13 @@ class EspecialidadeController extends Controller
      */
     public function index()
     {
-        //
+        $filtro = request('filtro');
+        if ($filtro) {
+            $especialidades = Especialidade::where('nome', 'like', "%{$filtro}%")->get();
+        } else {
+            $especialidades = Especialidade::all();
+        }
+        return view('especialidade.index', ['especialidades' => $especialidades]);
     }
 
     /**
@@ -64,7 +70,7 @@ class EspecialidadeController extends Controller
      * @param  \App\Models\Especialidade  $especialidade
      * @return \Illuminate\Http\Response
      */
-    public function edit(Especialidade $especialidade)
+    public function edit($id)
     {
         $especialidade = Especialidade::findOrFail($id);
 
@@ -78,7 +84,7 @@ class EspecialidadeController extends Controller
      * @param  \App\Models\Especialidade  $especialidade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Especialidade $especialidade)
+    public function update(Request $request, $id)
     {
         $especialidade = Especialidade::findOrFail($id);
         $especialidade->nome = $request->nome;
