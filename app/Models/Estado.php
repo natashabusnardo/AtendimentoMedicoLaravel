@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Estado extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nome',
+        'sigla'
+    ];
+
+    public function cidades(){
+        return $this->hasMany('App\Models\Cidade');
+    }
 }
