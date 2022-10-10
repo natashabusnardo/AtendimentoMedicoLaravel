@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Paciente;
+use App\Models\atendimento;
 use Illuminate\Http\Request;
 
-class PacienteController extends Controller
+class AtendimentoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes = Paciente::all();
-        return view('paciente.index', compact('pacientes'));
+        $atendimentos = atendimento::all();
+        return view('atendimento.index', compact('atendimentos'));
     }
 
     /**
@@ -25,7 +25,7 @@ class PacienteController extends Controller
      */
     public function create()
     {
-        return view('paciente.create');
+        return view('atendimento.create');
     }
 
     /**
@@ -36,54 +36,54 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        Paciente::create($request->all());
-        redirect()->route('paciente.index');
+        $atendimento = new atendimento();
+        $atendimento->nome = $request->nome;
+        $atendimento->save();
+        return redirect()->route('atendimento.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Paciente  $paciente
+     * @param  \App\Models\atendimento  $atendimento
      * @return \Illuminate\Http\Response
      */
-    public function show(Paciente $paciente)
+    public function show(atendimento $atendimento)
     {
-        return view('paciente.show', compact('paciente'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Paciente  $paciente
+     * @param  \App\Models\atendimento  $atendimento
      * @return \Illuminate\Http\Response
      */
-    public function edit(Paciente $paciente)
+    public function edit(atendimento $atendimento)
     {
-        return view('paciente.edit', compact('paciente'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Paciente  $paciente
+     * @param  \App\Models\atendimento  $atendimento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Paciente $paciente)
+    public function update(Request $request, atendimento $atendimento)
     {
-        $paciente->update($request->all());
-        return redirect()->route('paciente.index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Paciente  $paciente
+     * @param  \App\Models\atendimento  $atendimento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Paciente $paciente)
+    public function destroy(atendimento $atendimento)
     {
-        $paciente->delete();
-        return redirect()->route('paciente.index');
+        //
     }
 }

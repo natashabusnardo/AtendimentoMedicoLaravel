@@ -14,7 +14,7 @@ class CidadeController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -81,5 +81,11 @@ class CidadeController extends Controller
     public function destroy(Cidade $cidade)
     {
         //
+    }
+
+    public function getCidades(Request $request)
+    {
+        $cidades = Cidade::where('estado_id', $request->estado_id)->get();
+        return response()->json($cidades);
     }
 }
