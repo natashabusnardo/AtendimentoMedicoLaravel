@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('medico_has_especialidade', function (Blueprint $table) {
-            //
+        Schema::create('medicos', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('crm');
+            $table->string('nome');
+            $table->boolean('disponivel');
         });
     }
 
@@ -25,7 +29,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('medico_has_especialidade', function (Blueprint $table) {
+        Schema::table('medicos', function (Blueprint $table) {
             //
         });
     }
