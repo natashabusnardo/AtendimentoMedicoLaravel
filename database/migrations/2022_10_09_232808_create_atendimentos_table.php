@@ -16,6 +16,13 @@ return new class extends Migration
         Schema::create('atendimentos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->timestamp('hora_chegada');
+            $table->timestamp('hora_atendimento');
+            $table->string('gravidade');
+            $table->unsignedBigInteger('medico_id');
+            $table->unsignedBigInteger('paciente_id');
+            $table->foreign('paciente_id')->references('id')->on('pacientes');
+            $table->foreign('medico_id')->references('id')->on('medicos');
         });
     }
 
