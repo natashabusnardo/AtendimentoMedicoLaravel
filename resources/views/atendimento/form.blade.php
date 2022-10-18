@@ -1,0 +1,17 @@
+
+@section('content')
+
+<div id="atendimento-form-container" class="col-md-6 offset-md-3">
+    <div class="form-group">
+        <input type="text" id="id" nome="id" disabled value="{{ isset($atendimento->id) ? $atendimento->id : 0 }}" class="form-control" hidden>
+        <br><br>
+        <label for="nome">Nome: </label>
+        <input type="text" id="nome" name="nome" value="{{ isset($atendimento['nome']) ? $atendimento['nome'] : '' }}" class="form-control" required>
+        <br><br>
+        
+        <input type="submit" value="Salvar" class="btn btn-primary">
+    </div>
+</div>
+
+@endsection
+   
