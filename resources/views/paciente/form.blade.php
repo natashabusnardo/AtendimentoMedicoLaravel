@@ -1,7 +1,6 @@
 @section('content')
 @isset($paciente)
     $endereco = Endereco::find($paciente->id);
-    $user = Usuario::find($paciente->user_id);
 @endisset
 <div id="especialidade-form-container" class="col-md-6 offset-md-3">
     <div class="form-group">
@@ -53,52 +52,25 @@
                 $estados = Estado::all();
                 @endphp
                 @foreach ($estados as $estado)
-                <option value="{{ $estado->id }}" {{ isset($endereco) && $endereco->estado == $estado->id ? 'selected' : '' }}>{{ $estado->name }}</option>
+                <option value="{{ $estado->id }}" {{ isset($endereco) && $endereco->estado == $estado->id ? 'selected' : '' }}>{{ $estado->nome }}</option>
                 @endforeach
                 
             </select></div>
         </div>
         <div class="col">
             <div class="mb-3"><label class="form-label" for="cidade"><strong>Cidade</strong><br></label>
-            <select class="form-select" id="cidade" required name="cidade">
-                <option value="" selected>Selecione uma opção</option>
+            <select class="form-select" id="cidade_id" required name="cidade_id">
+                @if (isset($address))
+                    <option value="{{ $city->id }}" selected>{{ $city->name }}</option>
+                @else
+                    <option value="" selected>Selecione uma opção</option>
+                @endif
             </select>
         </div>
-    </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col">
-            <div class="mb-3"><label class="form-label" for="login"><strong>Usuário</strong></label>
-            <div class="input-group"><span class="input-group-text">@</span>
-            <input class="form-control" type="text" id="login" name="login" placeholder="user.name" required minlength="2" value="{{ isset($user) ? $user->login : '' }}" onchange="validateLogin(this)">
-        </div>
-    </div>
-    </div>
-    <div class="col">
-        <div class="mb-3"><label class="form-label" for="email"><strong>E-mail</strong></label>
-        <input class="form-control" type="email" id="email" name="email" placeholder="user@example.com" required value="{{ isset($paciente) ? $paciente->email : '' }}" onchange="validateEmail(this)">
-    </div>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="mb-3"><label class="form-label" for="password"><strong>Senha</strong><br></label>
-            @if (isset($user))
-            <input class="form-control" type="password" id="password" name="password" placeholder="********" onchange="validatePassword(this)">
-            @else
-            <input class="form-control" type="password" id="password" name="password" placeholder="********" onchange="validatePassword(this)" required>
-            @endif
-        </div>
-    </div>
-    <div class="col">
-        <div class="mb-3"><label class="form-label" for="confirm_password"><strong>Confirmar senha</strong><br></label>
-        @if (isset($user))
-        <input class="form-control" type="password" id="confirm_password" name="confirm_password" placeholder="********" onchange="validatePassword(this)">
-        @else
-        <input class="form-control" type="password" id="confirm_password" name="confirm_password" placeholder="********" onchange="validatePassword(this)" required>
-        @endif
+        <br><br>
         <input type="submit" value="Salvar" class="btn btn-primary">
-        <div class="row">
+    </div>
+    </div>
+</div>
 @endsection
    

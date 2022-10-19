@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EspecialidadeController;
+use App\Http\Controllers\MedicoController;
+use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\CidadeController;
 
 /*
@@ -20,4 +22,7 @@ Route::get('/', function () {
 });
 
 Route::resource('/especialidade', EspecialidadeController::class);
+Route::get('cidade/{estado}/estado', [CidadeController::class, 'getCidades'])->name('cidade.getCidades');
+Route::resource('/medico', MedicoController::class);
+Route::resource('/paciente', PacienteController::class);
 //chamar a classe do get cidades pra mostrar as cidades

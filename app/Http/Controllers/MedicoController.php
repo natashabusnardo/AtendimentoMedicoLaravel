@@ -14,7 +14,8 @@ class MedicoController extends Controller
      */
     public function index()
     {
-        //
+        $medicos = medico::all();
+        return view('medico.index', compact('medicos'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MedicoController extends Controller
      */
     public function create()
     {
-        //
+        return view('medico.create');
     }
 
     /**

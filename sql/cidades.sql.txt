@@ -4126,7 +4126,7 @@ INSERT INTO `cidades` (`id`, `nome`, `estado_id`) VALUES
 (4123, 'SANTA TERESA DO BONITO', 13),
 (4124, 'SANTA TEREZINHA DE MINAS', 13),
 (4125, 'SANTA VITORIA', 13);
-INSERT INTO `cidade` (`id`, `nome`, `estado_id`) VALUES
+INSERT INTO `cidades` (`id`, `nome`, `estado_id`) VALUES
 (4126, 'SANTANA DA VARGEM', 13),
 (4127, 'SANTANA DE CALDAS', 13),
 (4128, 'SANTANA DE CATAGUASES', 13),

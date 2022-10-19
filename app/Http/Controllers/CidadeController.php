@@ -83,9 +83,9 @@ class CidadeController extends Controller
         //
     }
 
-    public function getCidades(Request $request)
+    public function getCidades($id)
     {
-        $cidades = Cidade::where('estado_id', $request->estado_id)->get();
+        $cidades = Cidade::where('estado_id', $id)->get();
         return response()->json($cidades);
     }
 }
