@@ -6,7 +6,7 @@
         @method('PATCH')
         @csrf
         @section('content')
-        @component('paciente.form', ['paciente' => $paciente])
+        @component('paciente.form', ['paciente' => $paciente, 'endereco' => $endereco])
         @endcomponent
     </form>
 @endsection

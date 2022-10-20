@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Paciente;
+use App\Models\Endereco;
 use Illuminate\Http\Request;
 
 class PacienteController extends Controller
@@ -36,8 +37,19 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        Paciente::create($request->all());
-        redirect()->route('paciente.index');
+        $paciente = Paciente::create($request->all());
+        
+        $e = new Endereco();
+        $e -> paciente_id = $paciente->id;
+        $e -> logradouro = $request->logradouro;
+        $e -> numero = $request->numero;
+        $e -> cep = $request->cep;
+        $e -> bairro = $request->bairro;
+        $e -> complemento = $request->complemento;
+        $e -> cidade_id = $request->cidade_id;
+        $e -> save();
+
+        return redirect()->route('paciente.index');
     }
 
     /**
@@ -59,7 +71,8 @@ class PacienteController extends Controller
      */
     public function edit(Paciente $paciente)
     {
-        return view('paciente.edit', compact('paciente'));
+        $endereco = Endereco::where('paciente_id', $paciente->id)->first();
+        return view('paciente.edit', compact('paciente', 'endereco'));
     }
 
     /**

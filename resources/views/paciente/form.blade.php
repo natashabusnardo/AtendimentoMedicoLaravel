@@ -1,27 +1,28 @@
 @section('content')
-@isset($paciente)
-    $endereco = Endereco::find($paciente->id);
-@endisset
-<div id="especialidade-form-container" class="col-md-6 offset-md-3">
+
+<div id="paciente-form-container" class="col-md-6 offset-md-3">
     <div class="form-group">
-        <input type="text" id="id" nome="id" disabled value="{{ isset($especialidade->id) ? $especialidade->id : 0 }}" class="form-control" hidden>
+        <input type="text" id="id" nome="id" disabled value="{{ isset($paciente->id) ? $paciente->id : 0 }}" class="form-control" hidden>
         <br><br>
         <label for="nome">Nome: </label>
-        <input type="text" id="nome" name="nome" value="{{ isset($especialidade['nome']) ? $especialidade['nome'] : '' }}" class="form-control" required>
+        <input type="text" id="nome" name="nome" value="{{ isset($paciente['nome']) ? $paciente['nome'] : '' }}" class="form-control" required>
         <br><br>
         <label class="form-label" for="cpf"><strong>CPF</strong><br></label>
         <input class="form-control" type="text" id="cpf" name="cpf" required minlength="11" value="{{ isset($paciente) ? $paciente->cpf : '' }}" onchange="validateCpfCnpj(this)">
         <br><br>
-        <label class="form-label" for="phone"><strong>Telefone</strong><br></label>
-        <input class="form-control" type="text" id="phone" name="phone" placeholder="(47) 90000-0000" value="{{ isset($paciente) ? $paciente->phone : '' }}">
+        <label class="form-label" for="telefone"><strong>Telefone</strong><br></label>
+        <input class="form-control" type="text" id="telefone" name="telefone" placeholder="(47) 90000-0000" value="{{ isset($paciente) ? $paciente->telefone : '' }}">
+        <label for="email">Email: </label>
+        <input type="email" id="email" name="email" value="{{ isset($paciente['email']) ? $paciente['email'] : '' }}" class="form-control" required>
+        <br><br>
         <div class="col-xl-3">
             <div class="mb-3"><label class="form-label" for="cep"><strong>CEP</strong><br></label>
             <input class="form-control" type="text" id="cep" name="cep" placeholder="00000-000" value="{{ isset($endereco) ? $endereco->cep : '' }}">
         </div>
         </div>
         <div class="col-xl-6">
-            <div class="mb-3"><label class="form-label" for="rua"><strong>Endereço</strong><br></label>
-            <input class="form-control" type="text" id="rua" name="rua" required value="{{ isset($endereco) ? $endereco->rua : '' }}">
+            <div class="mb-3"><label class="form-label" for="logradouro"><strong>Logradouro</strong><br></label>
+            <input class="form-control" type="text" id="logradouro" name="logradouro" required value="{{ isset($endereco) ? $endereco->logradouro : '' }}">
         </div>
     </div>
     <div class="col-xl-3">
@@ -37,7 +38,7 @@
         </div>
     </div>
         <div class="col">
-            <div class="mb-3"><label class="form-label" for="complemento"><strong>complementoo</strong><br></label>
+            <div class="mb-3"><label class="form-label" for="complemento"><strong>Complementoo</strong><br></label>
             <input class="form-control" type="text" id="complemento" name="complemento" value="{{ isset($endereco) ? $endereco->complemento : '' }}">
         </div>
     </div>

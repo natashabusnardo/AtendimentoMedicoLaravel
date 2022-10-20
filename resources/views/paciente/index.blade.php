@@ -14,6 +14,9 @@
             <tr>
             <th scope="col">Id</th>
             <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">E-mail</th>
             <th scope="col">Ações</th>
             </tr>
         </thead>
@@ -22,6 +25,9 @@
                 <tr>
                     <th scope="row">{{ $paciente->id }}</th>
                     <td>{{ $paciente->nome }}</td>
+                    <td>{{ $paciente->cpf }}</td>
+                    <td>{{ $paciente->telefone }}</td>
+                    <td>{{ $paciente->email }}</td>
                     <td class="text-end align-middle">
                         <a href="{{ route('paciente.show', $paciente->id) }}" class="btn btn-primary">Ver</a>
                         <a href="{{ route('paciente.edit', $paciente->id) }}" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon>Editar</a>
