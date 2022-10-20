@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('medico_has_especialidade', function (Blueprint $table) {
+        Schema::create('medico_has_especialidades', function (Blueprint $table) {
             $table->foreignId('medico_id')->constrained('medicos');
             $table->foreignId('especialidade_id')->constrained('especialidades');
             $table->timestamps();

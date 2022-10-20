@@ -14,7 +14,7 @@
 
         <!-- CSS da aplicação -->
         <link rel="stylesheet" href="/css/style.css">
-        <script src="/js/scripts.js"></script>
+
     </head>
     <body>
       <header>
@@ -48,5 +48,7 @@
         <p>Atendimento Médico &copy; 2022</p>
       </footer>
       <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+      <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+      <script src="{{ asset('assets/js/addEspecialidade.js') }}"></script>
     </body>
 </html>

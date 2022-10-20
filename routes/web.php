@@ -25,4 +25,5 @@ Route::resource('/especialidade', EspecialidadeController::class);
 Route::get('cidade/{estado}/estado', [CidadeController::class, 'getCidades'])->name('cidade.getCidades');
 Route::resource('/medico', MedicoController::class);
 Route::resource('/paciente', PacienteController::class);
-//chamar a classe do get cidades pra mostrar as cidades
+Route::post('medico/especialidade', [MedicoController::class, 'adicionarEspecialidade'])->name('adicionarEspecialidade');
+Route::delete('medico/especialidade/{medico_id}/{especialidade_id}', [MedicoController::class, 'deleteEspecialidade'])->name('medico.especialidade.delete');
