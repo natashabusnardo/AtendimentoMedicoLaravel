@@ -1,4 +1,4 @@
-@extends('paciente.nav')
+@extends('home')
 @section('title', 'paciente create')
 
     <form action="{{ route('paciente.store') }}" method="POST">

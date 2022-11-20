@@ -37,9 +37,9 @@ class AtendimentoController extends Controller
     public function store(Request $request)
     {
         $atendimento = new atendimento();
-        $atendimento->nome = $request->nome;
+        $atendimento->fill($request->all());
         $atendimento->save();
-        return redirect()->route('atendimento.index');
+        return redirect()->route('atendimento.urgencia');
     }
 
     /**
@@ -50,7 +50,7 @@ class AtendimentoController extends Controller
      */
     public function show(atendimento $atendimento)
     {
-        //
+        return view('atendimento.show', compact('atendimento'));
     }
 
     /**
@@ -61,7 +61,7 @@ class AtendimentoController extends Controller
      */
     public function edit(atendimento $atendimento)
     {
-        //
+        return view('atendimento.edit', compact('atendimento'));
     }
 
     /**
@@ -73,7 +73,9 @@ class AtendimentoController extends Controller
      */
     public function update(Request $request, atendimento $atendimento)
     {
-        //
+        $atendimento->fill($request->all());
+        $atendimento->save();
+        return redirect()->route('atendimento.index');
     }
 
     /**
@@ -85,5 +87,31 @@ class AtendimentoController extends Controller
     public function destroy(atendimento $atendimento)
     {
         //
+    }
+
+    public function search(Request $request){
+        $atendimentos = atendimento::where('descricao', 'like', '%'.$request->search.'%')->get();
+        return view('atendimento.index', compact('atendimentos'));
+    }
+
+    // cria uma funcao que lista os atendimentos com hora_atendimento null ordenados por gravidade
+    public function urgencia(){
+        $atendimentos = atendimento::where('hora_atendimento', null)->orderBy('gravidade', 'desc')->get();
+        return view('atendimento.urgencia', compact('atendimentos'));
+    }
+
+    
+    public function atender($id)
+    {
+        $atendimento = atendimento::find($id);
+        return view('atendimento.realizar', compact('atendimento'));
+    }
+    // cria uma funcao para realizar os atendimentos que tem como parametro o id do atendimento
+    public function realizar(Request $request, $id){
+        $atendimento = atendimento::find($id);
+        $atendimento->fill($request->all());
+        $atendimento->hora_atendimento = date('Y-m-d H:i:s');
+        $atendimento->save();
+        return redirect()->route('atendimento.urgencia');
     }
 }

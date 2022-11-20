@@ -1,4 +1,4 @@
-@extends('medico.nav')
+@extends('home')
 @section('title', 'medico create')
 
     <form action="{{ route('medico.store') }}" method="POST">

@@ -1,4 +1,4 @@
-@extends('medico.nav')
+@extends('home')
 @section('title', 'medico Index')
 @section('content')
 <div id="search-container" class="col-md-12">

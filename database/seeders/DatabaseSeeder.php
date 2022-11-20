@@ -16,7 +16,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             EstadoSeeder::class,
-            CidadeSeeder::class
+            CidadeSeeder::class,
+            PacienteSeeder::class,
+            MedicoSeeder::class,
+            EspecialidadeSeeder::class,
+            Medico_has_EspecialidadeSeeder::class,
+            EnderecoSeeder::class,
+            AtendimentoSeeder::class,
         ]);
     }
 }

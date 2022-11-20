@@ -13,6 +13,7 @@ class Paciente extends Model
         'nome',
         'cpf',
         'telefone',
+        'data_nascimento',
         'email'
     ];
 }

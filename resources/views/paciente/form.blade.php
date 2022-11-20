@@ -15,6 +15,8 @@
         <label for="email">Email: </label>
         <input type="email" id="email" name="email" value="{{ isset($paciente['email']) ? $paciente['email'] : '' }}" class="form-control" required>
         <br><br>
+        <label for="data_nascimento">Data de Nascimento: </label>
+        <input type="date" id="data_nascimento" name="data_nascimento" value="{{ isset($paciente['data_nascimento']) ? $paciente['data_nascimento'] : '' }}" class="form-control" required>
         <div class="col-xl-3">
             <div class="mb-3"><label class="form-label" for="cep"><strong>CEP</strong><br></label>
             <input class="form-control" type="text" id="cep" name="cep" placeholder="00000-000" value="{{ isset($endereco) ? $endereco->cep : '' }}">

@@ -1,12 +1,6 @@
 @extends('home')
-@section('title', 'atendimento Index')
+@section('title', 'Lista de Urgências')
 @section('content')
-<div id="search-container" class="col-md-12">
-    <h1>Busque um atendimento</h1>
-    <form action="">
-        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar...">
-    </form>
-</div>
 <div class="col-md-10 offset-md-1 dashboard-agendas-container">
     <table class="table">
         <thead>
@@ -32,14 +26,10 @@
                     <td>{{ $atendimento->descricao }}</td>
                     <td>{{ $atendimento->gravidade }}</td>
                     <td>{{ date('d/m/Y H:i', strtotime($atendimento->created_at)) }}</td>
-                    @if($atendimento->hora_atendimento == null)
-                        <td>Não atendido</td>
-                    @else
-                        <td>{{ date('d/m/Y H:i', strtotime($atendimento->hora_atendimento)) }}</td>
-                    @endif
+                    <td>{{ $atendimento->hora_atendimento }}</td>
                     <td class="text-end align-middle">
                         <a href="{{ route('atendimento.show', $atendimento->id) }}" class="btn btn-primary">Ver</a>
-                        <a href="{{ route('atendimento.edit', $atendimento->id) }}" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon>Editar</a>
+                        <a href="{{ route('atendimento.atender', $atendimento->id) }}" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon>Realizar Atendimento</a>
                     <td>
                 </tr>   
             @endforeach

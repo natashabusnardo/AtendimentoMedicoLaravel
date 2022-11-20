@@ -1,4 +1,3 @@
-
 @section('content')
 
 <div id="especialidade-form-container" class="col-md-6 offset-md-3">

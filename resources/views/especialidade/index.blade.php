@@ -1,4 +1,4 @@
-@extends('especialidade.nav')
+@extends('home')
 @section('title', 'Especialidade Index')
 @section('content')
 <div id="search-container" class="col-md-12">

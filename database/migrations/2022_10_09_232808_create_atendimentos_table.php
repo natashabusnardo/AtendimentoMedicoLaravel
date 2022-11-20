@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('atendimentos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->dateTime('hora_chegada');
-            $table->dateTime('hora_atendimento');
-            $table->string('gravidade');
-            $table->unsignedBigInteger('medico_id');
+            $table->dateTime('hora_atendimento')->nullable();
+            $table->integer('gravidade');
+            $table->string('cid_id')->nullable();
+            $table->string('descricao')->nullable();
+            $table->unsignedBigInteger('medico_id')->nullable();
             $table->unsignedBigInteger('paciente_id');
             $table->foreign('medico_id')->references('id')->on('medicos');
             $table->foreign('paciente_id')->references('id')->on('pacientes');

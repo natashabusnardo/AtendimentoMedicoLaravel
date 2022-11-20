@@ -1,4 +1,4 @@
-@extends('medico.nav')
+@extends('home')
 
 @section('titulo', 'medico - edit')
 

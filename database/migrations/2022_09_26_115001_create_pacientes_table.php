@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nome');
             $table->string('cpf');
             $table->string('telefone');
+            $table->date('data_nascimento');
             $table->string('email');
         });
     }
