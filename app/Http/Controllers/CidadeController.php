@@ -14,7 +14,6 @@ class CidadeController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**

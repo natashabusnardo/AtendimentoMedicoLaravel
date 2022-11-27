@@ -15,7 +15,13 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes = Paciente::all();
+        $pacientes = Paciente::paginate(5);
+        $filtro = request()-> input ('filtro');
+        if ($filtro) {
+            $pacientes = Paciente::where('nome', 'like', "%{$filtro}%")->
+                               orWhere('cpf', 'like', "%{$filtro}%")->
+                               orderBy('id')->paginate(5);
+        }
         return view('paciente.index', compact('pacientes'));
     }
 

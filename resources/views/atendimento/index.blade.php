@@ -4,7 +4,8 @@
 <div id="search-container" class="col-md-12">
     <h1>Busque um atendimento</h1>
     <form action="">
-        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar...">
+        <input type="text" id="filtro" name="filtro" class="form-control" placeholder="Procurar um atendimento">
+        <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
 </div>
 <div class="col-md-10 offset-md-1 dashboard-agendas-container">
@@ -46,4 +47,5 @@
         </tbody>
     </table>
 </div>
+{{@$atendimentos->links()}}
 @endsection

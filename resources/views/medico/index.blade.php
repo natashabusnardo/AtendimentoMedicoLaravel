@@ -8,7 +8,6 @@
     </form>
 </div>
 <div class="col-md-10 offset-md-1 dashboard-agendas-container">
-    <p>Confira nossos medicos</p>
     <table class="table">
         <thead>
             <tr>
@@ -40,4 +39,5 @@
         </tbody>
     </table>
 </div>
+{{@$medicos->links()}}
 @endsection

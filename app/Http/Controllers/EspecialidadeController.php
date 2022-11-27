@@ -14,13 +14,14 @@ class EspecialidadeController extends Controller
      */
     public function index()
     {
-        $filtro = request('filtro');
-        if ($filtro) {
-            $especialidades = Especialidade::where('nome', 'like', "%{$filtro}%")->get();
-        } else {
-            $especialidades = Especialidade::all();
-        }
-        return view('especialidade.index', ['especialidades' => $especialidades]);
+        $especialidades = Especialidade::paginate(5);
+        $filtro = request()->input('filtro');
+            $especialidades = Especialidade::where('nome', 'like', "%{$filtro}%")
+                                ->orderBy('nome')->paginate(3);
+
+        return view('especialidade.index', ['especialidades' => $especialidades])
+        ->with('especialidades', $especialidades)
+        ->with('filtro', $filtro);
     }
 
     /**

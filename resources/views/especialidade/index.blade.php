@@ -4,11 +4,11 @@
 <div id="search-container" class="col-md-12">
     <h1>Busque um especialidade</h1>
     <form action="">
-        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar...">
+        <input type="text" id="filtro" name="filtro" class="form-control" placeholder="Procurar uma especialidade">
+        <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
 </div>
 <div class="col-md-10 offset-md-1 dashboard-agendas-container">
-    <p>Confira nossos especialidades</p>
     <table class="table">
         <thead>
             <tr>

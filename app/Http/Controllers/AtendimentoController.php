@@ -14,7 +14,13 @@ class AtendimentoController extends Controller
      */
     public function index()
     {
-        $atendimentos = atendimento::all();
+        $atendimentos = atendimento::paginate(10);
+        $filtro = request()->input('filtro');
+            $atendimentos = atendimento::where('id', 'like', "%{$filtro}%")->
+                                        orWhere('descricao', 'like', "%{$filtro}%")->
+                                        orWhere('paciente_id', 'like', "%{$filtro}%")->
+                                        orWhere('medico_id', 'like', "%{$filtro}%") 
+                                ->orderBy('id')->paginate(10);
         return view('atendimento.index', compact('atendimentos'));
     }
 
@@ -89,11 +95,6 @@ class AtendimentoController extends Controller
         //
     }
 
-    public function search(Request $request){
-        $atendimentos = atendimento::where('descricao', 'like', '%'.$request->search.'%')->get();
-        return view('atendimento.index', compact('atendimentos'));
-    }
-
     // cria uma funcao que lista os atendimentos com hora_atendimento null ordenados por gravidade
     public function urgencia(){
         $atendimentos = atendimento::where('hora_atendimento', null)->orderBy('gravidade', 'desc')->get();
@@ -110,6 +111,7 @@ class AtendimentoController extends Controller
     public function realizar(Request $request, $id){
         $atendimento = atendimento::find($id);
         $atendimento->fill($request->all());
+        $atendimento->descricao = $request->descricao;
         $atendimento->hora_atendimento = date('Y-m-d H:i:s');
         $atendimento->save();
         return redirect()->route('atendimento.urgencia');

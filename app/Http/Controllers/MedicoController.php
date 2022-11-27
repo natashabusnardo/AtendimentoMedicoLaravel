@@ -15,7 +15,13 @@ class MedicoController extends Controller
      */
     public function index()
     {
-        $medicos = medico::all();
+        $medicos = medico::paginate(5);
+        $filtro = request()-> input ('filtro');
+        if ($filtro) {
+            $medicos = medico::where('nome', 'like', "%{$filtro}%")->
+                               orWhere('crm', 'like', "%{$filtro}%")->
+                               orderBy('id')->paginate(5);
+        }
         return view('medico.index', compact('medicos'));
     }
 

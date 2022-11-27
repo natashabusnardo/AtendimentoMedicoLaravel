@@ -24,14 +24,13 @@
                         @endforeach
                     </select></div>
                 <br><br>
-                <label for="gravidade">Gravidade: </label>
-                <input type="text" id="gravidade" name="gravidade" value="{{ isset($atendimento->gravidade) ? $atendimento->gravidade : '' }}" class="form-control" disabled>
+                <input type="text" id="gravidade" name="gravidade" value="{{ isset($atendimento->gravidade) ? $atendimento->gravidade : '' }}" class="form-control" readonly>
                 <br><br>
                 <label for="gravidade">Código CID10 doença: </label>
                 <input type="text" id="cid_id" name="cid_id" value="{{ isset($atendimento['cid_id']) ? $atendimento['cid_id'] : '' }}" class="form-control" required>
                 <br><br>
                 <label for="gravidade">Descrição: </label>
-                <input type="text" id="descricao" name="descricao" value="{{ isset($atendimento['descricao']) ? $atendimento['descricao'] : '' }}" class="form-control" required disabled>
+                <input type="text" id="descricao" name="descricao" value="{{ isset($atendimento['descricao']) ? $atendimento['descricao'] : '' }}" class="form-control" required readonly>
                 <br><br>
                 <input type="submit" value="Salvar" class="btn btn-primary">
             </div>

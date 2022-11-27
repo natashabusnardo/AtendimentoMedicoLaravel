@@ -44,4 +44,5 @@
         </tbody>
     </table>
 </div>
+{{@$pacientes->links()}}
 @endsection

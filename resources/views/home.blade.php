@@ -37,7 +37,6 @@
                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
                   <li><a class="dropdown-item" href="{{ route('especialidade.create') }}">Criar Especialidade</a></li>
                   <li><a class="dropdown-item" href="{{ route('especialidade.index') }}">Listar Especialidades</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
               </li>
             </ul>
