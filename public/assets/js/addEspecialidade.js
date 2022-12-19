@@ -6,14 +6,13 @@ $('#addEspecialidade').click(function(){
     var table = $('#especialidades');
 
     if (table.find('td:contains('+especialidade_nome+')').length != 0) {
-        alert('Usuario já adicionado');
+        alert('Especialidade já adicionada');
     } else if (medico_id == 0) {
         alert('Antes de adicionar uma especialidade, cadastre o médico');
     } else { 
         var tr = $('<tr class=align-middle></tr>');
-        tr.append('<td id="especialidade_id" value="'+especialidade_id+'">'+especialidade_id+'</td>');''
         tr.append('<td>'+especialidade_nome+'</td>');
-        tr.append('<td class="text-center"><a class="btn btn-outline-danger border rounded-circle" id="removeBtn" role="button" style="border-radius: 30px;border-width: 1px;"><i class="far fa-trash-alt"></i></a></td>')
+        tr.append('<td class="text-center"><button class="btn btn-danger" type="button" id="removeBtn">-</button></td>')
 
         table.append(tr);
         
@@ -25,7 +24,7 @@ $('#addEspecialidade').click(function(){
                 especialidade_id: especialidade_id
             },
             success: function(data) {
-                alert('Usuario adicionado com sucesso');
+                alert('Especialidade adicionada com sucesso');
             }
         });
     }
@@ -41,7 +40,7 @@ $(document).on('click', '#removeBtn', function(){
         url: '/medico/especialidade/'+medico_id+'/'+especialidade_id,
         type: 'DELETE',
         success: function(data) {
-            alert('Especialidade removido com sucesso');
+            alert('Especialidade removida com sucesso');
         }
     });
 });

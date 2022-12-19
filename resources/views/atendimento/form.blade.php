@@ -34,31 +34,29 @@ Atendimento
                 @endforeach
             </select></div>
         <br><br>
-        <label for="gravidade">Gravidade: </label>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Febre</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Dor de Cabeça</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Diarréia</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Náuseas</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Sangramento</label>
-                </div>
-        <input type="radio" id="gravidade" name="gravidade" value="1" {{ isset($atendimento->gravidade) && $atendimento->gravidade == 1 ? 'checked' : '' }} required>Leve
-        <input type="radio" id="gravidade" name="gravidade" value="2" {{ isset($atendimento->gravidade) && $atendimento->gravidade == 2 ? 'checked' : '' }} required>Moderado
-        <input type="radio" id="gravidade" name="gravidade" value="3" {{ isset($atendimento->gravidade) && $atendimento->gravidade == 3 ? 'checked' : '' }} required>Grave
-        <br><br>
+            <label for="">Gravidade: </label>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="febre" name="febre">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Febre</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="dor" name="dor">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Dor de Cabeça</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="diarreia" name="diarreia">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Diarréia</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="nauseas" name="nauseas">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Náuseas</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="sangramento" name="sangramento">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Sangramento</label>
+                    </div>
+            <br><br>
+        </div>
         @if (isset($atendimento->id))
         <label for="cid_id">Código CID10 doença: </label>
         <input type="text" id="cid_id" name="cid_id" value="{{ isset($atendimento['cid_id']) ? $atendimento['cid_id'] : '' }}" class="form-control" required>

@@ -9,28 +9,56 @@
         <label for="crm">CRM: </label>
         <input type="text" id="crm" name="crm" value="{{ isset($medico['crm']) ? $medico['crm'] : '' }}" class="form-control" required>
         <br><br>
-        <label for="especialidade">Especialidade: </label>
         @isset($medico)
             @php $especialidades = App\Models\Especialidade::all(); @endphp
-            <select name="especialidade_id" id="especialidade_id" class="form-control"> 
-                @foreach($especialidades as $especialidade)
-                    <option value="{{ $especialidade->id }}" {{ $especialidade->id == $medico->especialidade_id ? 'selected' : '' }}>{{ $especialidade->nome }}</option>
-                @endforeach
-            </select> <button class="btn btn-success" type="button" id="addEspecialidade">+</button>
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text">Especialidade</span>
+                            <select class="form-select" required id="especialidade_id" name="especialidade_id">
+                                @foreach ($especialidades as $especialidade)
+                                    <option value="{{ $especialidade->id }}" {{ $especialidade->id == $medico->especialidade_id ? 'selected' : '' }}>{{ $especialidade->nome }}</option>
+                                @endforeach
+                            </select>
+                            <button class="btn btn-success" type="button" id="addEspecialidade">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endisset
-        <table id="especialidades">
-            @isset($medico)
-                @php $medico_has_especialidades = App\Models\Medico_has_especialidade::where('medico_id', $medico->id)->get(); @endphp
-                @foreach($medico_has_especialidades as $medico_has_especialidade)
-                    @php $especialidade = App\Models\Especialidade::find($medico_has_especialidade->especialidade_id); @endphp
-                    <tr class="align-middle">
-                        <td id="especialidade_id" value="{{ $especialidade->id }}">{{ $especialidade->id }}</td>
-                        <td>{{ $especialidade->nome }}</td>
-                        <td class="text-center"><a class="btn btn-outline-danger border rounded-circle" id="removeBtn" role="button" style="border-radius: 30px;border-width: 1px;">-</a></td>
-                    </tr>
-                @endforeach
-            @endisset
-        </table>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Especialidade</th>
+                                <th class="text-center">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="especialidades">
+                            @isset($medico)
+                                @php $especialidades = App\Models\Medico_has_especialidade::where('medico_id', $medico->id)->get(); @endphp
+                                @foreach ($especialidades as $especialidade)
+                                    <tr class="align-middle">
+                                        <td>{{ @App\Models\Especialidade::find($especialidade->especialidade_id)->nome }}</td>
+                                        <td class="text-center"><button class="btn btn-danger" type="button" id="removeBtn">-</button></td>
+                                    </tr>
+                                @endforeach
+                            @endisset
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td style="padding: 0px;"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
         <br><br>
         <label for="disponivel">Disponivel: </label>
         <input type="checkbox" name="disponivel" id="disponivel">
@@ -40,4 +68,4 @@
     </div>
 </div>
 @endsection
-   
+

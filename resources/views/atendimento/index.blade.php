@@ -31,7 +31,13 @@
                     <td>{{ @App\Models\Medico::find($atendimento->medico_id)->nome }}</td>
                     <td>{{ $atendimento->cid_id }}</td>
                     <td>{{ $atendimento->descricao }}</td>
-                    <td>{{ $atendimento->gravidade }}</td>
+                    @if($atendimento->gravidade == 1)
+                        <td>Leve</td>
+                    @elseif($atendimento->gravidade == 2)
+                        <td>Moderado</td>
+                    @elseif($atendimento->gravidade == 3)
+                        <td>Grave</td>
+                    @endif
                     <td>{{ date('d/m/Y H:i', strtotime($atendimento->created_at)) }}</td>
                     @if($atendimento->hora_atendimento == null)
                         <td>Não atendido</td>

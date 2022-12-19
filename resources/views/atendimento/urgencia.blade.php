@@ -6,8 +6,8 @@
         <thead>
             <tr>
             <th scope="col">Paciente</th>
-            <th scope="col">Medico</th>
             <th scope="col">Gravidade</th>
+            <th scope="col">Data Chegada</th>
             <th scope="col">Ações</th>
             </tr>
         </thead>
@@ -15,7 +15,13 @@
             @foreach($atendimentos as $atendimento)
                 <tr>
                     <td>{{ @App\Models\Paciente::find($atendimento->paciente_id)->nome }}</td>
-                    <td>{{ $atendimento->gravidade }}</td>
+                    @if($atendimento->gravidade == 1)
+                        <td>Leve</td>
+                    @elseif($atendimento->gravidade == 2)
+                        <td>Moderado</td>
+                    @elseif($atendimento->gravidade == 3)
+                        <td>Grave</td>
+                    @endif
                     <td>{{ date('d/m/Y H:i', strtotime($atendimento->created_at)) }}</td>
                     <td class="text-end align-middle">
                         <a href="{{ route('atendimento.show', $atendimento->id) }}" class="btn btn-primary">Ver</a>

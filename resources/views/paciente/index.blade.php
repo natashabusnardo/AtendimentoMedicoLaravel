@@ -8,7 +8,6 @@
     </form>
 </div>
 <div class="col-md-10 offset-md-1 dashboard-agendas-container">
-    <p>Confira nossos pacientes</p>
     <table class="table">
         <thead>
             <tr>

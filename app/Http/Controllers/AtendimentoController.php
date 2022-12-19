@@ -44,6 +44,33 @@ class AtendimentoController extends Controller
     {
         $atendimento = new atendimento();
         $atendimento->fill($request->all());
+
+        $gravidade = 0;
+        
+        if ($request->febre == 'on') {
+            $gravidade += 1;
+        }
+        if ($request->dor == 'on') {
+            $gravidade += 1;
+        }
+        if ($request->diarreia == 'on') {
+            $gravidade += 1;
+        }
+        if ($request->nauseas == 'on') {
+            $gravidade += 1;
+        }
+        if ($request->sangramento == 'on') {
+            $gravidade += 1;
+        }
+
+        if ($gravidade >= 3) {
+            $atendimento->gravidade = 3;
+        } else if ($gravidade == 2) {
+            $atendimento->gravidade = 2;
+        } else {
+            $atendimento->gravidade = 1;
+        }
+
         $atendimento->save();
         return redirect()->route('atendimento.urgencia');
     }
